@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - dotcom.jar</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0;
+      background: #d9eaf2;
+      color: #111;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+    body {
+      background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 1px, transparent 1px, transparent 4px),
+        linear-gradient(90deg, #f7fbff 0%, #c2deeb 50%, #f7fbff 100%);
+    }
+    a { color: #004d91; font-weight: bold; text-decoration: none; }
+    a:hover { color: #ffffff; background: #145f99; text-decoration: underline; }
+    .page {
+      width: 900px; margin: 10px auto 18px auto;
+      border: 1px solid #1d455c;
+      background: #ffffff;
+      box-shadow: 0 0 0 2px #8fb4c8, 4px 4px 0 #6c8da0;
+    }
+    .top-strip {
+      height: 22px; line-height: 22px; padding: 0 10px;
+      color: #eaf8ff; background: #264f68;
+      border-bottom: 1px solid #0e2b3c;
+      font-size: 11px; letter-spacing: 1px;
+    }
+    .header {
+      position: relative; height: 112px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0.03)),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.17) 0px, rgba(255,255,255,0.17) 1px, transparent 1px, transparent 3px),
+        linear-gradient(90deg, #6a98ae, #cbe5f1 45%, #4a7992);
+      border-bottom: 4px solid #2c5267;
+      overflow: hidden;
+    }
+    .jar-icon {
+      position: absolute; left: 23px; top: 18px;
+      width: 72px; height: 72px;
+      border: 2px solid #1e3f52;
+      background: #f7fbff;
+      box-shadow: 3px 3px 0 #436b80;
+      transform: rotate(-5deg);
+    }
+    .jar-icon:before {
+      content: "";
+      position: absolute; left: 15px; top: -10px;
+      width: 39px; height: 11px;
+      border: 2px solid #1e3f52;
+      background: #a7ccdc;
+    }
+    .jar-icon .label {
+      position: absolute; left: 8px; top: 23px; right: 8px;
+      padding: 5px 0;
+      background: #2d6c92; color: #fff;
+      text-align: center;
+      font-family: "Courier New", monospace;
+      font-weight: bold; font-size: 16px;
+    }
+    .site-title {
+      margin-left: 120px; padding-top: 18px;
+      font-family: Arial Black, Impact, Verdana, sans-serif;
+      font-size: 54px; color: #ffffff;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 0 #24516c, 4px 4px 0 #8bb0c2;
+      line-height: 58px;
+    }
+    .site-title span { color: #12394f; text-shadow: 1px 1px 0 #ffffff; }
+    .tagline {
+      margin-left: 124px; color: #11374b;
+      font-size: 12px; font-weight: bold;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav {
+      background: #e9f7ff;
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #25516a;
+      padding: 5px 8px; text-align: center;
+    }
+    .nav a {
+      display: inline-block; min-width: 100px;
+      margin: 0 4px; padding: 5px 10px;
+      color: #ffffff;
+      background: linear-gradient(#79aabe, #315d76);
+      border-top: 2px solid #e6f7ff;
+      border-left: 2px solid #e6f7ff;
+      border-right: 2px solid #17384b;
+      border-bottom: 2px solid #17384b;
+      font-size: 13px; text-shadow: 1px 1px #12394f;
+    }
+    .nav a:hover, .nav a.active {
+      background: linear-gradient(#bfe8f7, #2d6c92);
+      color: #fff; text-decoration: none;
+    }
+    table.layout { width: 100%; border-collapse: collapse; }
+    td.sidebar {
+      width: 190px; vertical-align: top;
+      background: #6f9caf;
+      border-right: 3px solid #ffffff;
+      color: #ffffff;
+    }
+    td.content { vertical-align: top; padding: 8px; background: #ffffff; }
+    td.rightbar {
+      width: 180px; vertical-align: top;
+      background: #e6f3f8;
+      border-left: 3px solid #ffffff;
+      padding: 0;
+    }
+    .box-title {
+      padding: 4px 8px;
+      background: #315d76; color: #ffffff;
+      font-weight: bold; font-size: 15px;
+      border-top: 1px solid #8db5c6;
+      border-bottom: 1px solid #17384b;
+      text-shadow: 1px 1px #111;
+    }
+    .side-links { padding: 8px 10px 13px 10px; }
+    .side-link {
+      display: block; padding: 5px 4px 5px 26px; margin: 4px 0;
+      color: #ffffff; font-weight: bold;
+      background-repeat: no-repeat; background-position: 4px 5px;
+      border-bottom: 1px dotted rgba(255,255,255,0.45);
+    }
+    .side-link:hover, .side-link.active { background-color: #315d76; color: #fff; }
+    .ico-home { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath d='M9 2L2 8v8h5v-5h4v5h5V8z' fill='%23fff' stroke='%230b3d5b' stroke-width='1'/%3E%3C/svg%3E"); }
+    .ico-download { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Crect x='2' y='9' width='14' height='7' fill='%23fff' stroke='%230b3d5b'/%3E%3Cpath d='M9 1v10M5 7l4 4 4-4' stroke='%230b3d5b' stroke-width='2' fill='none'/%3E%3C/svg%3E"); }
+    .ico-about { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23fff' stroke='%230b3d5b'/%3E%3Crect x='8' y='7' width='2' height='7' fill='%230b3d5b'/%3E%3Crect x='8' y='4' width='2' height='2' fill='%230b3d5b'/%3E%3C/svg%3E"); }
+    .ico-web { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Ccircle cx='9' cy='9' r='8' fill='%23fff' stroke='%230b3d5b'/%3E%3Cpath d='M1 9h16M9 1c3 3 3 13 0 16M9 1c-3 3-3 13 0 16' stroke='%230b3d5b' fill='none'/%3E%3C/svg%3E"); }
+    .notice {
+      border-top: 2px solid #d9f2ff; border-left: 2px solid #d9f2ff;
+      border-right: 2px solid #3d6578; border-bottom: 2px solid #3d6578;
+      background: #f3fbff; padding: 8px; margin-bottom: 10px;
+    }
+    .headline {
+      font-family: Georgia, "Times New Roman", serif;
+      color: #354f5d; font-size: 24px; font-weight: bold;
+      margin: 3px 0 4px 0;
+    }
+    .subhead {
+      color: #315d76; font-weight: bold;
+      border-bottom: 1px solid #b8d4df;
+      padding-bottom: 3px; margin-bottom: 8px;
+    }
+    .section-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px; font-weight: bold;
+      color: #1e4d66;
+      border-left: 4px solid #315d76;
+      padding-left: 8px;
+      margin: 16px 0 6px 0;
+      background: #eaf6fb;
+    }
+    .key-table {
+      width: 100%; border-collapse: collapse;
+      margin: 8px 0 12px 0; font-size: 12px;
+    }
+    .key-table th {
+      background: #5f8fa5; color: #fff;
+      text-align: left; padding: 5px 8px;
+      border: 1px solid #315d76;
+    }
+    .key-table td {
+      padding: 6px 8px;
+      border: 1px solid #b9d4df;
+      background: #fbfeff;
+      vertical-align: top;
+    }
+    .key-table tr:nth-child(even) td { background: #f0f8fc; }
+    .keybox {
+      display: inline-block;
+      background: #264f68;
+      color: #fff;
+      font-family: "Courier New", monospace;
+      font-weight: bold;
+      font-size: 12px;
+      padding: 2px 7px;
+      border-top: 2px solid #8fb4c8;
+      border-left: 2px solid #8fb4c8;
+      border-right: 2px solid #0e2b3c;
+      border-bottom: 2px solid #0e2b3c;
+      margin: 1px 2px;
+    }
+    .tip-box {
+      background: #e4f4fb;
+      border-left: 4px solid #315d76;
+      border-bottom: 2px solid #8fb4c8;
+      padding: 7px 10px;
+      margin: 10px 0;
+      font-size: 12px;
+    }
+    .tip-box b { color: #1e4d66; }
+    .phone-grid {
+      display: table;
+      width: 100%;
+      margin: 10px 0;
+    }
+    .phone-grid-row { display: table-row; }
+    .phone-cell {
+      display: table-cell;
+      width: 33%;
+      padding: 6px;
+      vertical-align: top;
+    }
+    .phone-card {
+      border: 1px solid #8fb4c8;
+      background: #fff;
+      padding: 8px;
+      box-shadow: 2px 2px 0 #b8d4df;
+      font-size: 12px;
+    }
+    .phone-card b { color: #1e4d66; display: block; margin-bottom: 4px; }
+    .small-box {
+      margin: 8px; border: 1px solid #315d76;
+      background: #ffffff; font-size: 12px;
+    }
+    .small-box .inner { padding: 7px; }
+    .button-old {
+      display: inline-block; padding: 3px 10px;
+      color: #14384e; background: #e6f7ff;
+      border-top: 2px solid #ffffff; border-left: 2px solid #ffffff;
+      border-right: 2px solid #5d7d90; border-bottom: 2px solid #5d7d90;
+      font-weight: bold; font-size: 12px;
+    }
+    .button-old:hover { color: #fff; background: #315d76; }
+    .footer {
+      clear: both; padding: 8px; text-align: center;
+      color: #dff4ff; background: #264f68;
+      border-top: 3px solid #8fb4c8; font-size: 11px;
+    }
+    .blink {
+      animation: blink 1.2s steps(2, start) infinite;
+      color: #0b5d96; font-weight: bold;
+    }
+    @keyframes blink { to { visibility: hidden; } }
+    .counter {
+      font-family: "Courier New", monospace;
+      display: inline-block;
+      background: #111; color: #8efcff;
+      padding: 2px 5px; border: 2px inset #9fb6c1;
+      letter-spacing: 2px;
+    }
+    ul.retro-list { margin-top: 6px; padding-left: 20px; }
+    ul.retro-list li { margin: 5px 0; }
+    @media (max-width: 940px) {
+      .page { width: 95%; }
+      .site-title { font-size: 44px; }
+      td.sidebar, td.rightbar { width: 160px; }
+      .phone-cell { display: block; width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="top-strip">DOTCOM.JAR // CLASSIC JAVA GAME ARCHIVE // MADE BY RUTER1Z</div>
+    <div class="header">
+      <div class="jar-icon"><div class="label">.jar</div></div>
+      <div class="site-title">dotcom<span>.jar</span></div>
+      <div class="tagline">small games, big pixels, coming soon</div>
+    </div>
+    <div class="nav">
+      <a class="active" href="home.html">Home</a>
+      <a href="index.html">Downloads</a>
+      <a href="about.html">About</a>
+      <a href="websites.html">Websites</a>
+    </div>
+    <table class="layout" cellpadding="0" cellspacing="0">
+      <tr>
+        <td class="sidebar">
+          <div class="box-title">Menu</div>
+          <div class="side-links">
+            <a class="side-link ico-home active" href="home.html">Home</a>
+            <a class="side-link ico-download" href="index.html">Downloads</a>
+            <a class="side-link ico-about" href="about.html">About</a>
+            <a class="side-link ico-web" href="websites.html">Websites</a>
+          </div>
+          <div class="box-title">Status</div>
+          <div class="side-links">
+            <b>Games online:</b> 0<br>
+            <b>Format:</b> .JAR<br>
+            <b>Site mode:</b> beta<br>
+            <br>
+            <span class="blink">UNDER CONSTRUCTION</span>
+          </div>
+        </td>
+
+        <td class="content">
+
+          <!-- WELCOME -->
+          <div class="notice">
+            <div class="headline">Welcome to dotcom.jar</div>
+            <div class="subhead">Your archive for J2ME / Java phone games — made by ruter1z</div>
+            <p>
+              <b>dotcom.jar</b> is a site dedicated to tiny Java games built for old button phones.
+              Everything here runs as a <b>.jar</b> file — the classic format used by J2ME
+              (Java 2 Micro Edition) on phones like Nokia, Sony Ericsson, Motorola, and Samsung
+              from the early 2000s through the 2010s.
+            </p>
+            <p>
+              Games are designed for <b>small screens, limited memory, and keypad controls</b>.
+              No touchscreen. No app store. Just a tiny Java game loaded straight onto your phone.
+            </p>
+            <div class="tip-box">
+              <b>&#9733; New here?</b> Read the guide below to learn what J2ME is, how to install
+              .jar games, and how button phone controls work in classic mobile games.
+            </div>
+            <a class="button-old" href="index.html">Go to Downloads</a>
+          </div>
+
+          <!-- WHAT IS J2ME -->
+          <div class="notice">
+            <div class="headline">What is J2ME?</div>
+            <div class="subhead">Java 2 Micro Edition — the engine behind classic mobile gaming.</div>
+            <p>
+              <b>J2ME</b> (Java 2 Micro Edition) is a version of Java designed for small devices
+              like mobile phones, PDAs, and pagers. It was the dominant mobile gaming platform
+              from roughly <b>2000 to 2013</b>, before Android and iOS took over.
+            </p>
+            <p>
+              J2ME games use the <b>MIDP</b> (Mobile Information Device Profile) standard and are
+              packaged as two files:
+            </p>
+            <ul class="retro-list">
+              <li><b>.jar</b> — the actual game / application archive (Java bytecode + resources)</li>
+              <li><b>.jad</b> — a small descriptor file with metadata (title, size, permissions)</li>
+            </ul>
+            <p>
+              Most phones only need the <b>.jar</b> to install a game. The .jad is optional but
+              sometimes required by older handsets to verify the file before installing.
+            </p>
+
+            <div class="section-title">Phones that ran J2ME games</div>
+            <div class="phone-grid">
+              <div class="phone-grid-row">
+                <div class="phone-cell">
+                  <div class="phone-card">
+                    <b>&#128241; Nokia</b>
+                    3310, 3410, 6600, N-Gage, N70, N95 and many more.
+                    Some of the best J2ME support ever made.
+                  </div>
+                </div>
+                <div class="phone-cell">
+                  <div class="phone-card">
+                    <b>&#128241; Sony Ericsson</b>
+                    W800i, K750i, W995, Xperia X1. Known for great
+                    screens and solid Java support.
+                  </div>
+                </div>
+                <div class="phone-cell">
+                  <div class="phone-card">
+                    <b>&#128241; Motorola / Samsung</b>
+                    RAZR V3, E398, Samsung SGH series.
+                    Varied Java support depending on model.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-title">J2ME vs Modern Android / iOS</div>
+            <table class="key-table">
+              <tr>
+                <th>Feature</th>
+                <th>J2ME (classic)</th>
+                <th>Modern mobile</th>
+              </tr>
+              <tr>
+                <td>Screen size</td>
+                <td>128×128 to 240×320 px</td>
+                <td>1080p and above</td>
+              </tr>
+              <tr>
+                <td>RAM available</td>
+                <td>128 KB – 2 MB</td>
+                <td>4 GB+</td>
+              </tr>
+              <tr>
+                <td>Controls</td>
+                <td>Physical keypad (12 keys)</td>
+                <td>Touchscreen</td>
+              </tr>
+              <tr>
+                <td>Game file size</td>
+                <td>10 KB – 1 MB typical</td>
+                <td>Hundreds of MB+</td>
+              </tr>
+              <tr>
+                <td>Install method</td>
+                <td>.jar file via Bluetooth / cable / WAP</td>
+                <td>App store download</td>
+              </tr>
+              <tr>
+                <td>Online required?</td>
+                <td>No — fully offline</td>
+                <td>Often yes</td>
+              </tr>
+            </table>
+          </div>
+
+          <!-- HOW TO INSTALL -->
+          <div class="notice">
+            <div class="headline">How to Install a .jar Game</div>
+            <div class="subhead">Getting games onto a real button phone.</div>
+
+            <div class="section-title">Method 1 — USB Cable / Memory Card</div>
+            <ol class="retro-list">
+              <li>Download the <b>.jar</b> file (and <b>.jad</b> if available) to your PC.</li>
+              <li>Connect your phone via USB cable or insert the memory card into a card reader.</li>
+              <li>Copy the .jar (and .jad) into the phone's memory or memory card.</li>
+              <li>On the phone, go to <b>File Manager</b> → find the .jar → select it → <b>Install</b>.</li>
+              <li>The phone will ask for permissions — accept them.</li>
+              <li>The game appears in <b>Applications</b> or <b>Games</b> menu.</li>
+            </ol>
+
+            <div class="section-title">Method 2 — Bluetooth Transfer</div>
+            <ol class="retro-list">
+              <li>Enable Bluetooth on both PC and phone.</li>
+              <li>Pair them if needed.</li>
+              <li>Right-click the .jar on PC → Send to → Bluetooth device → select phone.</li>
+              <li>Accept the file on the phone.</li>
+              <li>Open the received file and install it.</li>
+            </ol>
+
+            <div class="section-title">Method 3 — WAP / Mobile Browser (old-school)</div>
+            <ol class="retro-list">
+              <li>Open the phone's <b>WAP browser</b> or mobile browser.</li>
+              <li>Navigate to the game's download URL.</li>
+              <li>The phone will download and offer to install the .jar directly.</li>
+            </ol>
+
+            <div class="tip-box">
+              <b>&#9888; Tip:</b> Some phones require the .jad file to be in the same folder as
+              the .jar, otherwise it may refuse to install or show a security warning.
+              If installation fails, try putting both files together.
+            </div>
+
+            <div class="section-title">Playing on a PC — Emulators</div>
+            <p>
+              You don't need a real phone to play J2ME games. Use one of these emulators:
+            </p>
+            <ul class="retro-list">
+              <li>
+                <b>J2ME Loader</b> — Android app that runs .jar games on modern Android phones.
+                Best option for most people.
+              </li>
+              <li>
+                <b>KEmulator</b> — Classic Windows emulator. Runs most MIDP 2.0 games well.
+              </li>
+              <li>
+                <b>Microemulator</b> — Java-based, cross-platform, open source.
+              </li>
+              <li>
+                <b>Sony Ericsson SDK / Nokia SDK</b> — Official emulators, more accurate
+                but harder to set up.
+              </li>
+            </ul>
+          </div>
+
+          <!-- HOW TO PLAY / CONTROLS -->
+          <div class="notice">
+            <div class="headline">How to Play — Button Phone Controls</div>
+            <div class="subhead">Understanding the J2ME keypad layout used in classic mobile games.</div>
+
+            <p>
+              J2ME games were designed around a standard <b>12-key phone keypad</b>. Every phone
+              had the same basic layout, so most games share the same control scheme. Here's what
+              each key typically does:
+            </p>
+
+            <div class="section-title">Standard Keypad Layout</div>
+            <table class="key-table">
+              <tr>
+                <th>Key</th>
+                <th>Typical action in games</th>
+                <th>Notes</th>
+              </tr>
+              <tr>
+                <td><span class="keybox">2</span> / <span class="keybox">&#8593;</span></td>
+                <td>Move Up / Jump</td>
+                <td>Most common up action</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">4</span> / <span class="keybox">&#8592;</span></td>
+                <td>Move Left</td>
+                <td>Standard left movement</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">6</span> / <span class="keybox">&#8594;</span></td>
+                <td>Move Right</td>
+                <td>Standard right movement</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">8</span> / <span class="keybox">&#8595;</span></td>
+                <td>Move Down / Crouch / Duck</td>
+                <td>Standard down action</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">5</span> / Centre / OK</td>
+                <td>Fire / Attack / Confirm / Action</td>
+                <td>The main action button</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">*</span></td>
+                <td>Secondary fire / Special ability / Menu</td>
+                <td>Varies by game</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">#</span></td>
+                <td>Pause / Secondary action / Switch weapon</td>
+                <td>Varies by game</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">0</span></td>
+                <td>Jump / Special / Info screen</td>
+                <td>Some games use 0 for jump</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">1</span></td>
+                <td>Secondary action / Inventory / Map</td>
+                <td>Less common, game-specific</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">3</span></td>
+                <td>Strafe right / Camera / Special</td>
+                <td>Game-specific</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">7</span></td>
+                <td>Strafe left / Special</td>
+                <td>Game-specific</td>
+              </tr>
+              <tr>
+                <td><span class="keybox">9</span></td>
+                <td>Inventory / Map / Special</td>
+                <td>Game-specific</td>
+              </tr>
+              <tr>
+                <td>Left Soft Key (LSK)</td>
+                <td>Menu / Options / OK</td>
+                <td>The button above * on most phones</td>
+              </tr>
+              <tr>
+                <td>Right Soft Key (RSK)</td>
+                <td>Back / Cancel / Exit</td>
+                <td>The button above # on most phones</td>
+              </tr>
+            </table>
+
+            <div class="section-title">D-Pad vs Number Keys</div>
+            <p>
+              Phones with a <b>D-pad</b> (directional pad — a cross-shaped button) used it as the
+              primary movement control. Games mapped the D-pad directions to <b>Up/Down/Left/Right</b>.
+              Phones without a D-pad used <b>2/4/6/8</b> as a substitute — this was called the
+              <b>"numpad WASD"</b> of mobile gaming.
+            </p>
+            <p>
+              Most J2ME games support <b>both</b> input methods so they work on any phone.
+              The game detects which keys are pressed and responds accordingly.
+            </p>
+
+            <div class="section-title">Typical Control Schemes by Genre</div>
+            <table class="key-table">
+              <tr>
+                <th>Genre</th>
+                <th>Common controls</th>
+              </tr>
+              <tr>
+                <td><b>Platformer</b></td>
+                <td>
+                  <span class="keybox">4</span><span class="keybox">6</span> move,
+                  <span class="keybox">5</span> or <span class="keybox">0</span> jump,
+                  <span class="keybox">*</span> attack
+                </td>
+              </tr>
+              <tr>
+                <td><b>Top-down RPG / Adventure</b></td>
+                <td>
+                  <span class="keybox">2</span><span class="keybox">4</span><span class="keybox">6</span><span class="keybox">8</span> move,
+                  <span class="keybox">5</span> interact / attack,
+                  LSK menu
+                </td>
+              </tr>
+              <tr>
+                <td><b>Arcade / Shooter</b></td>
+                <td>
+                  <span class="keybox">2</span><span class="keybox">4</span><span class="keybox">6</span><span class="keybox">8</span> move,
+                  <span class="keybox">5</span> fire,
+                  <span class="keybox">*</span> bomb / special
+                </td>
+              </tr>
+              <tr>
+                <td><b>Puzzle</b></td>
+                <td>
+                  <span class="keybox">4</span><span class="keybox">6</span> or D-pad to select,
+                  <span class="keybox">5</span> confirm,
+                  RSK back
+                </td>
+              </tr>
+              <tr>
+                <td><b>Racing</b></td>
+                <td>
+                  <span class="keybox">4</span><span class="keybox">6</span> steer,
+                  <span class="keybox">2</span> accelerate,
+                  <span class="keybox">8</span> brake,
+                  <span class="keybox">5</span> nitro
+                </td>
+              </tr>
+              <tr>
+                <td><b>Sports / Fighting</b></td>
+                <td>
+                  <span class="keybox">4</span><span class="keybox">6</span> move,
+                  <span class="keybox">1</span><span class="keybox">2</span><span class="keybox">3</span> attack buttons,
+                  <span class="keybox">5</span> special
+                </td>
+              </tr>
+            </table>
+
+            <div class="tip-box">
+              <b>&#9733; Always check the in-game help!</b> Every game has its own control
+              screen — usually found in the main menu under <b>Help</b>, <b>Controls</b>, or
+              <b>How to Play</b>. The controls listed here are the most common defaults,
+              but each game can be different.
+            </div>
+
+            <div class="section-title">Tips for Playing J2ME Games</div>
+            <ul class="retro-list">
+              <li>
+                <b>Save often</b> — most J2ME games have limited save slots or only one save
+                point. Use it whenever you can.
+              </li>
+              <li>
+                <b>Screen size matters</b> — if the game looks squashed or too small, check your
+                phone's display settings or emulator resolution settings.
+              </li>
+              <li>
+                <b>Trust nothing is wasted</b> — J2ME games were made to fit in tiny file sizes.
+                Every pixel and every sound was carefully chosen. The simplicity is the charm.
+              </li>
+              <li>
+                <b>Backlight will dim</b> — on real phones, the screen dims during gameplay.
+                You may need to change phone settings to keep the backlight on longer.
+              </li>
+              <li>
+                <b>Emulator key mapping</b> — if using J2ME Loader or KEmulator, you can
+                remap keys to your keyboard or gamepad for a better experience.
+              </li>
+              <li>
+                <b>Some games need MIDP 1.0, some need MIDP 2.0</b> — check the .jad file or
+                game description for the required profile. Most modern emulators support both.
+              </li>
+            </ul>
+          </div>
+
+          <!-- ABOUT THE SITE -->
+          <div class="notice">
+            <div class="headline">About This Site</div>
+            <div class="subhead">What dotcom.jar is and what's coming.</div>
+            <p>
+              <b>dotcom.jar</b> is made by <b>ruter1z</b> (Rainers), a 15-year-old indie
+              developer who builds original J2ME games from scratch in 2025–2026 — long after
+              most people forgot this platform existed.
+            </p>
+            <p>
+              The site is styled to look like an early 2000s web page on purpose. It fits the era
+              of the games it hosts. Everything is hand-coded, no frameworks, no trackers.
+            </p>
+            <p>
+              Games will be uploaded to the <a href="index.html">Downloads</a> page as they are
+              finished. Follow development on <a href="websites.html">itch.io</a>.
+            </p>
+            <a class="button-old" href="about.html">Read more about ruter1z &rarr;</a>
+          </div>
+
+        </td>
+
+        <td class="rightbar">
+          <div class="box-title">News</div>
+          <div class="small-box">
+            <div class="inner">
+              <b>05/28/2026</b><br>
+              dotcom.jar opens its doors. Downloads coming soon.
+            </div>
+          </div>
+          <div class="box-title">Poll</div>
+          <div class="small-box">
+            <div class="inner">
+              What should arrive first?<br><br>
+              <label><input type="radio" name="poll"> Arcade game</label><br>
+              <label><input type="radio" name="poll"> Platformer</label><br>
+              <label><input type="radio" name="poll"> Puzzle game</label><br>
+              <label><input type="radio" name="poll"> Something weird</label><br><br>
+              <button class="button-old" type="button">vote</button>
+            </div>
+          </div>
+          <div class="box-title">Visitor Counter</div>
+          <div class="small-box">
+            <div class="inner" style="text-align:center;">
+              <span class="counter">000001</span><br>
+              <small>you are visitor #1</small>
+            </div>
+          </div>
+          <div class="box-title">Quick Links</div>
+          <div class="small-box">
+            <div class="inner">
+              <a href="#" style="display:block;margin:3px 0;">&#8594; What is J2ME?</a>
+              <a href="#" style="display:block;margin:3px 0;">&#8594; How to install</a>
+              <a href="#" style="display:block;margin:3px 0;">&#8594; Controls guide</a>
+              <a href="#" style="display:block;margin:3px 0;">&#8594; Emulators</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="footer">
+      dotcom.jar &copy; 2026 ruter1z // best viewed in a very nostalgic browser // no games yet
+    </div>
+  </div>
+</body>
+</html>
